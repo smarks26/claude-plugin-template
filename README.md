@@ -8,7 +8,7 @@ Create and distribute Claude Code plugins for your team or community. This GitHu
 
 ## Why Use This Template?
 
-- **Skip the boilerplate** — Pre-configured marketplace structure, plugin manifests, and GitHub Actions validation
+- **Skip the boilerplate** — Pre-configured marketplace structure and plugin manifests.
 - **Full plugin development toolkit** — Commands for scaffolding plugins, adding components (commands, skills, agents, hooks), and validating before release
 - **Best practices built-in** — Comprehensive documentation, examples, and guided workflows
 
