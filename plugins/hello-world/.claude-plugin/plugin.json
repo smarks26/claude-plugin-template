@@ -1,0 +1,8 @@
+{
+  "name": "hello-world",
+  "description": "Template for Claude plugin development.",
+  "author": {
+    "name": "Name",
+    "email": "support@email.com"
+  }
+}
