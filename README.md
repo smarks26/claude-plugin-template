@@ -216,6 +216,3 @@ MIT License — see [LICENSE](/LICENSE) for details.
 * [Anthropic Discord](https://discord.com/invite/anthropic) — Community support
 * [Claude Code GitHub](https://github.com/anthropics/claude-code) — Official repository
 
-```
-
-```
