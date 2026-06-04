@@ -1,6 +1,6 @@
-# Claude Code Plugin Marketplace Template
+# Claude Code Plugin Template
 
-Create and distribute Claude Code plugins for your team or community. This GitHub template provides everything you need to build a plugin marketplace — from scaffolding and validation to CI/CD automation.
+Create and distribute Claude Code plugins for your team or community. This GitHub template provides everything you need to build a plugin — from scaffolding and validation to CI/CD automation.
 
 [![GitHub stars](https://img.shields.io/github/stars/smarks26/claude-plugin-template?style=social)](https://github.com/smarks26/claude-plugin-template/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/smarks26/claude-plugin-template?style=social)](https://github.com/smarks26/claude-plugin-template/network/members)
@@ -10,7 +10,6 @@ Create and distribute Claude Code plugins for your team or community. This GitHu
 
 - **Skip the boilerplate** — Pre-configured marketplace structure, plugin manifests, and GitHub Actions validation
 - **Full plugin development toolkit** — Commands for scaffolding plugins, adding components (commands, skills, agents, hooks), and validating before release
-- **Team-ready distribution** — Configure automatic marketplace installation for team projects
 - **Best practices built-in** — Comprehensive documentation, examples, and guided workflows
 
 ## What's Included
@@ -30,7 +29,7 @@ Create and distribute Claude Code plugins for your team or community. This GitHu
 Click **"Use this template"** on GitHub, then clone your new repository:
 
 ```bash
-git clone https://github.com/your-org/your-marketplace-name.git
+git clone [https://github.com/your-org/your-marketplace-name.git](https://github.com/your-org/your-marketplace-name.git)
 cd your-marketplace-name
 ```
 
@@ -64,257 +63,144 @@ claude
 
 # Install the development toolkit
 /plugin install plugin-development@my-team-marketplace
+
 ```
 
 ### 4. Create Your First Plugin
 
-```bash
-# Scaffold a new plugin
-/plugin-development:init my-awesome-plugin
+1. **Plan your plugin structure:**
+* Ask: "What's the best directory structure for a plugin with commands and MCP integration?"
+* The plugin-structure skill will guide you
 
-# Add components
-/plugin-development:add-command my-command "Description of what it does"
-/plugin-development:add-skill my-skill "Use when working with..."
 
-# Validate before publishing
-/plugin-development:validate
-```
+2. **Add MCP integration (if needed):**
+* Ask: "How do I add an MCP server for database access?"
+* The mcp-integration skill provides examples and patterns
 
-## Plugin Development Commands
 
-The `plugin-development` plugin provides these commands:
+3. **Implement hooks (if needed):**
+* Ask: "Create a PreToolUse hook that validates file writes"
+* The hook-development skill gives working examples and utilities
 
-| Command | Description |
-|---------|-------------|
-| `/plugin-development:init [name]` | Scaffold a new plugin with standard structure |
-| `/plugin-development:add-command [name] [desc]` | Add a new slash command |
-| `/plugin-development:add-skill [name] [desc]` | Add a new skill with SKILL.md |
-| `/plugin-development:add-agent [name] [desc]` | Add a new sub-agent |
-| `/plugin-development:add-hook [event] [matcher]` | Add a hook configuration |
-| `/plugin-development:validate` | Validate plugin structure and configuration |
-| `/plugin-development:test-local` | Create dev marketplace for local testing |
 
-## Repository Structure
+
+## Development Workflow
+
+The plugin-development toolkit supports your entire plugin development lifecycle:
 
 ```
-├── .claude-plugin/
-│   └── marketplace.json          # Marketplace configuration
-├── .github/
-│   └── workflows/
-│       └── validate-plugins.yml  # CI/CD validation
-├── docs/                         # Comprehensive documentation
-│   ├── plugins.md                # Plugin development guide
-│   ├── plugins-reference.md      # Technical specifications
-│   ├── plugin-marketplaces.md    # Marketplace management
-│   ├── hooks.md                  # Event-driven automation
-│   ├── settings.md               # Configuration options
-│   ├── slash-commands.md         # Command system reference
-│   ├── skills.md                 # Agent skills guide
-│   └── sub-agents.md             # Sub-agent system
-└── plugins/
-    ├── hello-world/              # Example plugin
-    └── plugin-development/       # Development toolkit
+┌─────────────────────┐
+│  Design Structure   │ ──> plugin-structure skill
+│  (manifest, layout) │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│    Add Components   │ ──> All skills provide guidance
+│ (commands, agents,  │
+│    skills, hooks)   │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│ Integrate Services  │ ──> mcp-integration skill
+│    (MCP servers)    │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│   Add Automation    │ ──> hook-development skill
+│ (hooks, validation) │     + utility scripts
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│   Test & Validate   │ ──> hook-development utilities:
+│                     │     - validate-hook-schema.sh
+└─────────────────────┘     - test-hook.sh
+                            - hook-linter.sh
 ```
 
-## Team Distribution
+## Documentation Standards
 
-Configure automatic marketplace installation for your team by adding `.claude/settings.json` to your projects:
+All skills follow consistent standards:
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "my-team-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "your-org/your-marketplace-name"
-      }
-    }
-  }
-}
+* Third-person descriptions ("This skill should be used when...")
+* Strong trigger phrases for reliable loading
+* Imperative/infinitive form throughout
+* Based on official Claude Code documentation
+* Security-first approach with best practices
+
+## Use Cases
+
+### Building a Database Plugin
+
+```
+1. "What's the structure for a plugin with MCP integration?"
+   → plugin-structure skill provides layout
+
+2. "How do I configure an stdio MCP server for PostgreSQL?"
+   → mcp-integration skill shows configuration
+
+3. "Add a Stop hook to ensure connections close properly"
+   → hook-development skill provides pattern
 ```
 
-When team members trust the repository folder, Claude Code automatically installs the marketplace. See [Configure team marketplaces](https://code.claude.com/docs/en/plugin-marketplaces#configure-team-marketplaces) for details.
+### Creating a Validation Plugin
 
-## Installing from GitHub
+```
+1. "Create hooks that validate all file writes for security"
+   → hook-development skill with examples
 
-Once your marketplace is published to GitHub, users can install plugins with:
+2. "Test my hooks before deploying"
+   → Use validate-hook-schema.sh and test-hook.sh
 
-```bash
-# Add the marketplace
-/plugin marketplace add your-org/your-marketplace-name
-
-# Install a plugin
-/plugin install plugin-name@your-marketplace-name
+3. "Organize my hooks and configuration files"
+   → plugin-structure skill shows best practices
 ```
 
-## Local Testing
+### Integrating External Services
 
-Test your plugins before publishing:
+```
+1. "Add Asana MCP server with OAuth"
+   → mcp-integration skill covers SSE servers
 
-```bash
-# Navigate to your marketplace
-cd your-marketplace-name
+2. "Use Asana tools in my commands"
+   → mcp-integration tool-usage reference
 
-# Start Claude Code
-claude
-
-# Add local marketplace
-/plugin marketplace add .
-
-# Install and test a plugin
-/plugin install hello-world@my-team-marketplace
-/hello World
+3. "Structure my plugin with commands and MCP"
+   → plugin-structure skill provides patterns
 ```
 
-For iterative development:
+## Best Practices
 
-```bash
-# After making changes
-/plugin-development:validate
-/plugin uninstall plugin-name@my-team-marketplace
-/plugin install plugin-name@my-team-marketplace
-```
+### ✅ Security First
 
-## Uninstalling
+* Input validation in hooks
+* HTTPS/WSS for MCP servers
+* Environment variables for credentials
+* Principle of least privilege
 
-Remove the marketplace and its plugins from Claude Code:
+### ✅ Portability
 
-```bash
-# Remove a specific plugin
-/plugin uninstall plugin-name@my-team-marketplace
+* Use `${CLAUDE_PLUGIN_ROOT}` everywhere
+* Relative paths only
+* Environment variable substitution
 
-# Remove the marketplace entirely
-/plugin marketplace remove my-team-marketplace
-```
+### ✅ Testing
 
-To completely remove, delete the cloned repository directory.
+* Validate configurations before deployment
+* Test hooks with sample inputs
+* Use debug mode (`claude --debug`)
 
-## Creating Plugins Manually
+### ✅ Documentation
 
-If you prefer manual setup over the scaffolding commands:
+* Clear README files
+* Documented environment variables
+* Usage examples
 
-### 1. Create Plugin Directory
+## Official Claude Code Documentation
 
-```bash
-mkdir -p plugins/my-plugin/.claude-plugin
-mkdir -p plugins/my-plugin/commands
-```
-
-### 2. Add Plugin Manifest
-
-Create `plugins/my-plugin/.claude-plugin/plugin.json`:
-
-```json
-{
-  "name": "my-plugin",
-  "version": "1.0.0",
-  "description": "Description of what your plugin does",
-  "author": {
-    "name": "Your Name",
-    "email": "your-email@example.com"
-  },
-  "license": "MIT",
-  "keywords": ["keyword1", "keyword2"]
-}
-```
-
-### 3. Create a Command
-
-Create `plugins/my-plugin/commands/my-command.md`:
-
-```markdown
----
-description: Brief description of what the command does
-argument-hint: [arg1] [arg2]
----
-
-# My Command
-
-Instructions for Claude on how to execute this command.
-
-## Steps
-
-1. First step
-2. Second step
-3. Third step
-```
-
-### 4. Register in Marketplace
-
-Add to `.claude-plugin/marketplace.json`:
-
-```json
-{
-  "plugins": [
-    {
-      "name": "my-plugin",
-      "description": "Description of what your plugin does",
-      "version": "1.0.0",
-      "author": {
-        "name": "Your Name"
-      },
-      "source": "./plugins/my-plugin",
-      "category": "utilities",
-      "tags": ["tag1", "tag2"]
-    }
-  ]
-}
-```
-
-## Documentation
-
-### Local Guides (in `docs/`)
-
-| Guide | Description |
-|-------|-------------|
-| [Plugin Development](docs/plugins.md) | Complete guide to creating plugins |
-| [Plugin Reference](docs/plugins-reference.md) | Technical specifications and schemas |
-| [Plugin Marketplaces](docs/plugin-marketplaces.md) | Marketplace creation and management |
-| [Hooks](docs/hooks.md) | Event-driven automation |
-| [Settings](docs/settings.md) | Configuration and customization |
-| [Slash Commands](docs/slash-commands.md) | Command system reference |
-| [Skills](docs/skills.md) | Agent capabilities and expertise |
-| [Sub-Agents](docs/sub-agents.md) | Specialized AI assistants |
-
-### Official Claude Code Documentation
-
-- [Plugins Overview](https://code.claude.com/docs/en/plugins) — Plugin development guide
-- [Plugin Marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) — Marketplace management
-- [Plugins Reference](https://code.claude.com/docs/en/plugins-reference) — Technical specifications
-- [Slash Commands](https://code.claude.com/docs/en/slash-commands) — Command development
-
-## Example Plugins
-
-### hello-world
-
-A minimal example demonstrating proper plugin structure:
-
-```bash
-/plugin install hello-world@my-team-marketplace
-/hello World
-# Output: Hello, World! 👋
-```
-
-### plugin-development
-
-The comprehensive toolkit used throughout this template:
-
-- **7 slash commands** for scaffolding and validation
-- **plugin-authoring skill** for ambient guidance
-- **plugin-reviewer agent** for release readiness audits
-- **Automated hooks** for validation and formatting
-
-See the [plugin-development README](plugins/plugin-development/README.md) for complete documentation.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-plugin`)
-3. Make your changes
-4. Run validation (`/plugin-development:validate`)
-5. Commit your changes (`git commit -m 'Add amazing plugin'`)
-6. Push to the branch (`git push origin feature/amazing-plugin`)
-7. Open a Pull Request
+* [Plugins Overview](https://code.claude.com/docs/en/plugins) — Plugin development guide
+* [Plugin Marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) — Marketplace management
+* [Plugins Reference](https://code.claude.com/docs/en/plugins-reference) — Technical specifications
+* [Slash Commands](https://code.claude.com/docs/en/slash-commands) — Command development
 
 ## Acknowledgments
 
@@ -322,10 +208,14 @@ Built for [Claude Code](https://claude.com/claude-code) by [Anthropic](https://w
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](/LICENSE) for details.
 
 ## Resources
 
-- [Claude Code Documentation](https://code.claude.com/docs)
-- [Anthropic Discord](https://discord.com/invite/anthropic) — Community support
-- [Claude Code GitHub](https://github.com/anthropics/claude-code) — Official repository
+* [Claude Code Documentation](https://code.claude.com/docs)
+* [Anthropic Discord](https://discord.com/invite/anthropic) — Community support
+* [Claude Code GitHub](https://github.com/anthropics/claude-code) — Official repository
+
+```
+
+```
