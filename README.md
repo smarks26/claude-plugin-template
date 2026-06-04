@@ -16,10 +16,8 @@ Create and distribute Claude Code plugins for your team or community. This GitHu
 
 | Component | Description |
 |-----------|-------------|
-| **Marketplace Configuration** | `.claude-plugin/marketplace.json` following the [official schema](https://code.claude.com/docs/en/plugin-marketplaces#marketplace-schema) |
-| **Plugin Development Toolkit** | `plugin-development` plugin with 7 slash commands, a `plugin-authoring` skill for ambient guidance, and a reviewer agent |
-| **Example Plugin** | `hello-world` plugin demonstrating proper structure and best practices |
-| **CI/CD Workflows** | GitHub Actions for automated plugin validation on every push and PR |
+| **Plugin Development Toolkit** | `plugin-dev` plugin with a core SKILL.md (1,619 words), 3 example structures (minimal, standard, advanced), and 2 reference docs |
+| **Example Plugin** | `example-plugin` plugin demonstrating proper structure and best practices |
 | **Documentation** | Complete guides for plugins, hooks, settings, commands, skills, and sub-agents |
 
 ## Quick Start
