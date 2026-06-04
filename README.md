@@ -5,7 +5,6 @@ Create and distribute Claude Code plugins for your team or community. This GitHu
 [![GitHub stars](https://img.shields.io/github/stars/ivan-magda/claude-code-plugin-template?style=social)](https://github.com/smarks26/claude-code-plugin-template/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/ivan-magda/claude-code-plugin-template?style=social)](https://github.com/smarks26/claude-code-plugin-template/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Validate Plugins](https://github.com/smarks26/claude-code-plugin-template/actions/workflows/validate-plugins.yml/badge.svg)](https://github.com/smarks26/claude-code-plugin-template/actions/workflows/validate-plugins.yml)
 
 ## Why Use This Template?
 
